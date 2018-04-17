@@ -2,6 +2,10 @@
 #define TIC_TAC_TOE_FIELD_H
 #include <vector>
 
+constexpr char player_1_sign = 'X';
+constexpr char player_2_sign = 'O';
+constexpr char space_sign = ' ';
+
 class Field {
 public:
     Field();

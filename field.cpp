@@ -22,9 +22,9 @@ char Field::is_winner() const{
     for (int i = 0; i < field.size(); ++i) {
         bool win_line = true, win_column = true;
         for (int j = 1; j < field[i].size(); ++j) {
-            if (field[i][j] != field[i][j - 1] || field[i][j] == ' ')
+            if (field[i][j] != field[i][j - 1] || field[i][j] == space_sign)
                 win_line = false;
-            if (field[j][i] != field[j - 1][i] || field[j][i] == ' ')
+            if (field[j][i] != field[j - 1][i] || field[j][i] == space_sign)
                 win_column = false;
         }
         if(win_line){
@@ -40,7 +40,7 @@ char Field::is_winner() const{
             diag_right = false;
 
     }
-    if (field[1][1] != ' ')
+    if (field[1][1] != space_sign)
         if (diag_left || diag_right) return field[1][1];
     return 0;
 }
@@ -48,15 +48,15 @@ char Field::is_winner() const{
 bool Field::is_full() const {
     for (int i = 0; i < field.size(); ++i)
         for (int j = 0; j < field.size(); ++j)
-            if (field[i][j] == ' ') return false;
+            if (field[i][j] == space_sign) return false;
     return true;
 }
 
 bool Field::make_step(std::pair<int, int> st, bool current_user) {
-    if (field[st.first][st.second] != ' ') {
+    if (field[st.first][st.second] != space_sign) {
         return false;
     }
-    field[st.first][st.second] = current_user ? 'O' : 'X';
+    field[st.first][st.second] = current_user ? player_2_sign : player_1_sign;
     return true;
 }
 

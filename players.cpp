@@ -59,7 +59,7 @@ std::pair<int, int> HighSkillBotPlayer::get_step(const Field &fl, bool current_p
     for (int i = 0; i < field.size(); ++i) {
         for (int j = 0; j < field.size(); ++j) {
             if (field[i][j] != ' ') continue;
-            field[i][j] = current_player ? 'O' : 'X';
+            field[i][j] = current_player ? player_2_sign : player_1_sign;
             Field fld = Field(field);
             ranks[std::make_pair(i, j)] = win_rate(fld, !current_player, current_player, 1);
             field[i][j] = ' ';
@@ -81,8 +81,8 @@ std::pair<int, int> HighSkillBotPlayer::get_step(const Field &fl, bool current_p
 int win_rate(const Field &fl, bool current_player, bool st_player, int depth) {
     char wn = fl.is_winner();
     if (wn != 0) {
-        if (!st_player && wn == 'X') return 100 / depth;
-        else if (st_player && wn == 'O') return 100 / depth;
+        if (!st_player && wn == player_1_sign) return 100 / depth;
+        else if (st_player && wn == player_2_sign) return 100 / depth;
         else return -100 / depth;
     }
     if (fl.is_full()) return 0;
@@ -92,16 +92,15 @@ int win_rate(const Field &fl, bool current_player, bool st_player, int depth) {
     for (int i = 0; i < field.size(); ++i) {
         for (int j = 0; j < field.size(); ++j) {
             if (field[i][j] != ' ') continue;
-            field[i][j] = !current_player ? 'X' : 'O';
+            field[i][j] = !current_player ? player_1_sign : player_2_sign;
             Field fld = Field(field);
             ranks[std::make_pair(i, j)] = win_rate(fld, !current_player, st_player, depth + 1);
             field[i][j] = ' ';
         }
     }
-    int sum = 0;
 //    for (auto it = ranks.begin(); it != ranks.end(); ++it) sum += it->second;
     if (current_player == st_player) {
-        int max = -300000;
+        int max = std::numeric_limits<int>::min();
         for (auto it = ranks.begin(); it != ranks.end(); ++it) {
             if (it->second > max) {
                 max = it->second;
@@ -109,7 +108,7 @@ int win_rate(const Field &fl, bool current_player, bool st_player, int depth) {
         }
         return max;
     } else {
-        int min = 300000;
+        int min = std::numeric_limits<int>::max();
         for (auto it = ranks.begin(); it != ranks.end(); ++it) {
             if (it->second < min) {
                 min = it->second;

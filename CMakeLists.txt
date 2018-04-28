@@ -3,4 +3,5 @@ project(tic_tac_toe)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(tic_tac_toe main.cpp players.cpp field.cpp game.cpp game.h players.h field.h)
+add_executable(tic_tac_toe main.cpp players.cpp field.cpp game.cpp game.h players.h field.h menu.cpp menu.h)
+TARGET_LINK_LIBRARIES(tic_tac_toe -lncurses)

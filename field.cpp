@@ -9,9 +9,9 @@ Field::Field(const std::vector<std::vector<char> > &fld) : field(fld) {}
 void Field::print(int mod) const {
     if (mod == 0) {
         std::cout << "  a b c";
-        for (int i = 0; i < field.size(); ++i) {
+        for (size_t i = 0; i < field.size(); ++i) {
             std::cout << "\n" << i + 1 << " ";
-            for (int j = 0; j < field[i].size(); ++j) {
+            for (size_t j = 0; j < field[i].size(); ++j) {
                 std::cout << field[i][j] << "|";
             }
             std::cout << "\b\n" << "  -----";
@@ -25,10 +25,9 @@ void Field::print(int mod) const {
         WINDOW *menuwin = newwin(7, 7, (ymax - 7) / 2, (xmax - 7) / 2);
         refresh();
         wrefresh(menuwin);
-        int option = 0;
         box(menuwin, 0, 0);
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (size_t i = 0; i < 3; i++) {
+            for (size_t j = 0; j < 3; j++) {
                 mvwprintw(menuwin, i * 2 + 1, j * 2 + 1, "%c", field[i][j]);
                 if (j != 2) mvwprintw(menuwin, i * 2 + 1, (j + 1) * 2, "|");
             }
@@ -40,9 +39,9 @@ void Field::print(int mod) const {
 
 char Field::is_winner() const {
     bool diag_left = true, diag_right = true;
-    for (int i = 0; i < field.size(); ++i) {
+    for (size_t i = 0; i < field.size(); ++i) {
         bool win_line = true, win_column = true;
-        for (int j = 1; j < field[i].size(); ++j) {
+        for (size_t j = 1; j < field[i].size(); ++j) {
             if (field[i][j] != field[i][j - 1] || field[i][j] == space_sign)
                 win_line = false;
             if (field[j][i] != field[j - 1][i] || field[j][i] == space_sign)
@@ -67,8 +66,8 @@ char Field::is_winner() const {
 }
 
 bool Field::is_full() const {
-    for (int i = 0; i < field.size(); ++i)
-        for (int j = 0; j < field.size(); ++j)
+    for (size_t i = 0; i < field.size(); ++i)
+        for (size_t j = 0; j < field.size(); ++j)
             if (field[i][j] == space_sign) return false;
     return true;
 }

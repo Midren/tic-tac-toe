@@ -1,0 +1,10 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+Field	/home/momka45/Documents/Projects/CppCourse/tic-tac-toe/field.cpp	/^Field::Field() : field(std::vector<std::vector<char> >(3, std::vector<char>(3, ' '))) {}$/;"	f	language:C++	class:Field
+Field	/home/momka45/Documents/Projects/CppCourse/tic-tac-toe/field.cpp	/^Field::Field(const std::vector<std::vector<char> > &fld) : field(fld) {}$/;"	f	language:C++	class:Field
+get_field	/home/momka45/Documents/Projects/CppCourse/tic-tac-toe/field.cpp	/^const std::vector<std::vector<char> > &Field::get_field() const {$/;"	f	language:C++	class:Field
+is_blank	/home/momka45/Documents/Projects/CppCourse/tic-tac-toe/field.cpp	/^const bool Field::is_blank(int x, int y) const {$/;"	f	language:C++	class:Field
+is_full	/home/momka45/Documents/Projects/CppCourse/tic-tac-toe/field.cpp	/^bool Field::is_full() const {$/;"	f	language:C++	class:Field
+is_winner	/home/momka45/Documents/Projects/CppCourse/tic-tac-toe/field.cpp	/^char Field::is_winner() const {$/;"	f	language:C++	class:Field
+main	/home/momka45/Documents/Projects/CppCourse/tic-tac-toe/main.cpp	/^int main(int argc, char** argv) {$/;"	f	language:C++
+make_step	/home/momka45/Documents/Projects/CppCourse/tic-tac-toe/field.cpp	/^bool Field::make_step(std::pair<int, int> st, bool current_user) {$/;"	f	language:C++	class:Field
+print	/home/momka45/Documents/Projects/CppCourse/tic-tac-toe/field.cpp	/^void Field::print(int mod) const {$/;"	f	language:C++	class:Field
